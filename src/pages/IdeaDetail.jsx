@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Tag, X, ChevronDown, Trash2, UserPlus, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Tag, X, ChevronDown, Trash2, UserPlus, CheckCircle, Copy, Check } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import AIPanel from '@/components/AIPanel';
 import CommentsPanel from '@/components/CommentsPanel';
@@ -42,6 +42,8 @@ export default function IdeaDetail() {
   const [retroNote, setRetroNote] = useState('');
   const [showStageMenu, setShowStageMenu] = useState(false);
   const [showPriorityMenu, setShowPriorityMenu] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -119,6 +121,31 @@ export default function IdeaDetail() {
 
   const priority = PRIORITY_COLORS[idea.priority] || PRIORITY_COLORS.Medium;
 
+  const buildPrompt = () => {
+    const lines = [
+      `Build the following app on Base44:`,
+      ``,
+      `# ${idea.title}`,
+      ``,
+    ];
+    if (idea.raw_description) lines.push(`## Overview\n${idea.raw_description}\n`);
+    if (idea.spec_problem_statement) lines.push(`## Problem Statement\n${idea.spec_problem_statement}\n`);
+    if (idea.spec_goals) lines.push(`## Goals\n${idea.spec_goals}\n`);
+    if (idea.spec_target_users) lines.push(`## Target Users\n${idea.spec_target_users}\n`);
+    if (idea.spec_key_features) lines.push(`## Key Features\n${idea.spec_key_features}\n`);
+    if (idea.spec_tech_stack) lines.push(`## Tech Stack\n${idea.spec_tech_stack}\n`);
+    if (idea.spec_potential_risks) lines.push(`## Potential Risks\n${idea.spec_potential_risks}\n`);
+    if (idea.spec_effort_estimate) lines.push(`## Effort Estimate\n${idea.spec_effort_estimate}\n`);
+    if (idea.tags?.length) lines.push(`## Tags\n${idea.tags.join(', ')}\n`);
+    return lines.join('\n');
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(buildPrompt());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="max-w-5xl mx-auto">
       {/* Back */}
@@ -175,6 +202,15 @@ export default function IdeaDetail() {
           </div>
 
           <div className="ml-auto flex gap-2">
+            {idea.spec_problem_statement && (
+              <button
+                onClick={() => setShowExportModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white/60 hover:text-white text-xs font-medium transition-all hover:bg-white/5"
+              >
+                <Copy className="w-3.5 h-3.5" />
+                Export Prompt
+              </button>
+            )}
             <button
               onClick={() => setShowInvite(!showInvite)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white/60 hover:text-white text-xs font-medium transition-all hover:bg-white/5"
@@ -292,6 +328,31 @@ export default function IdeaDetail() {
           <CommentsPanel ideaId={id} currentUser={currentUser} />
         </div>
       </div>
+
+      {/* Export Prompt Modal */}
+      {showExportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}>
+          <div className="w-full max-w-2xl rounded-2xl p-6" style={{ background: 'rgba(10,22,40,0.98)', border: '1px solid rgba(99,102,241,0.4)' }}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-heading font-800 text-white text-lg">Base44 Prompt</h2>
+              <button onClick={() => setShowExportModal(false)} className="text-white/30 hover:text-white/60">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-white/40 text-xs mb-3">Copy this prompt and paste it into a new Base44 session to build the app.</p>
+            <pre className="w-full rounded-xl p-4 text-white/70 text-xs leading-relaxed overflow-auto max-h-96 whitespace-pre-wrap mb-4" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              {buildPrompt()}
+            </pre>
+            <button
+              onClick={handleCopy}
+              className="w-full py-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition-all"
+              style={{ background: copied ? 'linear-gradient(135deg, #10b981, #34d399)' : 'linear-gradient(135deg, #3b82f6, #6366f1)' }}
+            >
+              {copied ? <><Check className="w-4 h-4" /> Copied!</> : <><Copy className="w-4 h-4" /> Copy to Clipboard</>}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Retrospective modal */}
       {showRetro && (
