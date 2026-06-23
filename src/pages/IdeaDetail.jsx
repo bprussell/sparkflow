@@ -18,7 +18,7 @@ const PRIORITY_COLORS = {
 
 const STAGE_GRADIENTS = {
   Spark: 'linear-gradient(135deg, #f59e0b, #fbbf24)',
-  Refining: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
+  Refining: 'linear-gradient(135deg, #3b82f6, #6366f1)',
   Proposed: 'linear-gradient(135deg, #06b6d4, #22d3ee)',
   'In Progress': 'linear-gradient(135deg, #10b981, #34d399)',
   Shipped: 'linear-gradient(135deg, #ec4899, #f472b6)',
@@ -71,7 +71,7 @@ export default function IdeaDetail() {
   const handleShipWithRetro = async () => {
     await updateIdea({ stage: 'Shipped', retrospective_note: retroNote, stage_changed_at: new Date().toISOString() });
     setShowRetro(false);
-    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#7c3aed', '#f59e0b', '#06b6d4', '#ec4899', '#10b981'] });
+    confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#6366f1', '#f59e0b', '#06b6d4', '#ec4899', '#10b981'] });
   };
 
   const addTag = async (e) => {
@@ -108,7 +108,7 @@ export default function IdeaDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-32">
-        <div className="w-10 h-10 border-4 border-white/10 border-t-violet-500 rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-white/10 border-t-indigo-500 rounded-full animate-spin" />
       </div>
     );
   }
@@ -141,7 +141,7 @@ export default function IdeaDetail() {
               <ChevronDown className="w-3 h-3" />
             </button>
             {showStageMenu && (
-              <div className="absolute top-8 left-0 rounded-xl overflow-hidden z-20 min-w-36" style={{ background: 'rgba(15,5,32,0.98)', border: '1px solid rgba(124,58,237,0.3)' }}>
+              <div className="absolute top-8 left-0 rounded-xl overflow-hidden z-20 min-w-36" style={{ background: 'rgba(10,22,40,0.98)', border: '1px solid rgba(99,102,241,0.3)' }}>
                 {STAGES.map(s => (
                   <button key={s} onClick={() => handleStageChange(s)} className="w-full px-4 py-2 text-left text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: STAGE_GRADIENTS[s] }} />
@@ -163,7 +163,7 @@ export default function IdeaDetail() {
               <ChevronDown className="w-3 h-3" />
             </button>
             {showPriorityMenu && (
-              <div className="absolute top-8 left-0 rounded-xl overflow-hidden z-20 min-w-32" style={{ background: 'rgba(15,5,32,0.98)', border: '1px solid rgba(124,58,237,0.3)' }}>
+              <div className="absolute top-8 left-0 rounded-xl overflow-hidden z-20 min-w-32" style={{ background: 'rgba(10,22,40,0.98)', border: '1px solid rgba(99,102,241,0.3)' }}>
                 {PRIORITIES.map(p => (
                   <button key={p} onClick={async () => { setShowPriorityMenu(false); await updateIdea({ priority: p }); }}
                     className="w-full px-4 py-2 text-left text-sm font-medium text-white/80 hover:text-white hover:bg-white/5">
@@ -193,7 +193,7 @@ export default function IdeaDetail() {
 
         {/* Invite form */}
         {showInvite && (
-          <form onSubmit={handleInvite} className="flex gap-2 mb-4 p-3 rounded-xl" style={{ background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.2)' }}>
+          <form onSubmit={handleInvite} className="flex gap-2 mb-4 p-3 rounded-xl" style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}>
             <input
               type="email"
               value={inviteEmail}
@@ -203,7 +203,7 @@ export default function IdeaDetail() {
               style={{ background: 'rgba(255,255,255,0.07)' }}
               autoFocus
             />
-            <button type="submit" disabled={inviting} className="px-4 py-2 rounded-lg text-white text-xs font-bold disabled:opacity-50" style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }}>
+            <button type="submit" disabled={inviting} className="px-4 py-2 rounded-lg text-white text-xs font-bold disabled:opacity-50" style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }}>
               {inviting ? 'Inviting...' : 'Invite'}
             </button>
             <button type="button" onClick={() => setShowInvite(false)} className="text-white/30 hover:text-white/60">
@@ -219,7 +219,7 @@ export default function IdeaDetail() {
             onChange={e => setTitleDraft(e.target.value)}
             onBlur={async () => { await updateIdea({ title: titleDraft }); setEditingTitle(false); }}
             onKeyDown={e => e.key === 'Enter' && e.target.blur()}
-            className="w-full bg-transparent text-white font-heading font-800 text-2xl sm:text-3xl outline-none border-b border-violet-500/50 pb-1 mb-3"
+            className="w-full bg-transparent text-white font-heading font-800 text-2xl sm:text-3xl outline-none border-b border-indigo-500/50 pb-1 mb-3"
             autoFocus
           />
         ) : (
@@ -238,7 +238,7 @@ export default function IdeaDetail() {
             onChange={e => setDescDraft(e.target.value)}
             onBlur={async () => { await updateIdea({ raw_description: descDraft }); setEditingDesc(false); }}
             rows={3}
-            className="w-full bg-transparent text-white/70 text-sm outline-none border border-violet-500/30 rounded-lg p-2 resize-none leading-relaxed"
+            className="w-full bg-transparent text-white/70 text-sm outline-none border border-indigo-500/30 rounded-lg p-2 resize-none leading-relaxed"
             autoFocus
           />
         ) : (
@@ -254,7 +254,7 @@ export default function IdeaDetail() {
         <div className="flex flex-wrap gap-2 mt-4 items-center">
           <Tag className="w-3.5 h-3.5 text-white/30" />
           {(idea.tags || []).map(tag => (
-            <span key={tag} className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: 'rgba(167,139,250,0.2)', color: '#a78bfa' }}>
+            <span key={tag} className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: 'rgba(99,102,241,0.2)', color: '#818cf8' }}>
               {tag}
               <button onClick={() => removeTag(tag)} className="hover:text-white transition-colors ml-0.5">
                 <X className="w-2.5 h-2.5" />
@@ -296,7 +296,7 @@ export default function IdeaDetail() {
       {/* Retrospective modal */}
       {showRetro && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}>
-          <div className="w-full max-w-md rounded-2xl p-6" style={{ background: 'rgba(26,5,51,0.98)', border: '1px solid rgba(236,72,153,0.4)' }}>
+          <div className="w-full max-w-md rounded-2xl p-6" style={{ background: 'rgba(10,22,40,0.98)', border: '1px solid rgba(236,72,153,0.4)' }}>
             <div className="text-center mb-6">
               <div className="text-4xl mb-3">🚀</div>
               <h2 className="font-heading font-800 text-white text-xl mb-1">You're shipping this!</h2>

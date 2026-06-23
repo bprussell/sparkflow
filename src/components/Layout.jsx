@@ -22,7 +22,7 @@ export default function Layout() {
       <nav className="border-b border-white/10 sticky top-0 z-50"         style={{ background: 'rgba(5,13,26,0.85)', backdropFilter: 'blur(20px)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c3aed, #06b6d4)' }}>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center"             style={{ background: 'linear-gradient(135deg, #3b82f6, #06b6d4)' }}>
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <span className="font-heading font-800 text-white text-lg tracking-tight">Idea Pipeline</span>
@@ -38,7 +38,7 @@ export default function Layout() {
                     ? 'text-white'
                     : 'text-white/50 hover:text-white/80 hover:bg-white/5'
                 }`}
-                style={location.pathname === path ? { background: 'rgba(124,58,237,0.3)', color: 'white' } : {}}
+                style={location.pathname === path ? { background: 'rgba(99,102,241,0.3)', color: 'white' } : {}}
               >
                 <Icon className="w-4 h-4" />
                 <span className="hidden sm:inline">{label}</span>
