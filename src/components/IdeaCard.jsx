@@ -3,7 +3,7 @@ import { Sparkles, MessageCircle, Tag, Zap, Clock, AlertTriangle, Star } from 'l
 
 const STAGE_STYLES = {
   Spark: { gradient: 'linear-gradient(135deg, #f59e0b, #fbbf24)', text: '#78350f', bg: 'rgba(245,158,11,0.15)' },
-  Refining: { gradient: 'linear-gradient(135deg, #7c3aed, #a78bfa)', text: '#4c1d95', bg: 'rgba(124,58,237,0.15)' },
+  Refining: { gradient: 'linear-gradient(135deg, #3b82f6, #6366f1)', text: '#1e3a8a', bg: 'rgba(99,102,241,0.15)' },
   Proposed: { gradient: 'linear-gradient(135deg, #06b6d4, #22d3ee)', text: '#164e63', bg: 'rgba(6,182,212,0.15)' },
   'In Progress': { gradient: 'linear-gradient(135deg, #10b981, #34d399)', text: '#064e3b', bg: 'rgba(16,185,129,0.15)' },
   Shipped: { gradient: 'linear-gradient(135deg, #ec4899, #f472b6)', text: '#831843', bg: 'rgba(236,72,153,0.15)' },
@@ -34,13 +34,13 @@ export default function IdeaCard({ idea, commentCount = 0, provided, snapshot })
       ref={provided?.innerRef}
       {...(provided?.draggableProps || {})}
       {...(provided?.dragHandleProps || {})}
-      className="rounded-xl p-4 cursor-grab active:cursor-grabbing transition-opacity duration-150"
+      className="rounded-xl p-4 cursor-grab active:cursor-grabbing"
       style={{
-        background: snapshot?.isDragging ? 'rgba(99,102,241,0.25)' : 'rgba(255,255,255,0.06)',
+        ...(provided?.draggableProps?.style || {}),
+        background: snapshot?.isDragging ? 'rgba(99,102,241,0.2)' : 'rgba(255,255,255,0.06)',
         backdropFilter: 'blur(20px)',
         border: snapshot?.isDragging ? '1px solid rgba(99,102,241,0.5)' : '1px solid rgba(255,255,255,0.1)',
         boxShadow: snapshot?.isDragging ? '0 16px 40px rgba(0,0,0,0.5)' : undefined,
-        opacity: snapshot?.isDragging ? 0.95 : 1,
       }}
     >
       <Link to={`/idea/${idea.id}`} className="block select-none">
@@ -74,7 +74,7 @@ export default function IdeaCard({ idea, commentCount = 0, provided, snapshot })
         {idea.tags && idea.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">
             {idea.tags.slice(0, 3).map(tag => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: 'rgba(167,139,250,0.2)', color: '#a78bfa' }}>
+              <span key={tag} className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: 'rgba(99,102,241,0.2)', color: '#818cf8' }}>
                 {tag}
               </span>
             ))}
@@ -102,7 +102,7 @@ export default function IdeaCard({ idea, commentCount = 0, provided, snapshot })
           </div>
           <div className="flex items-center gap-1.5">
             {hasSpec && (
-              <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }} title="Spec generated" />
+              <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }} title="Spec generated" />
             )}
             {hasCritique && (
               <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #f59e0b, #fbbf24)' }} title="Critique done" />

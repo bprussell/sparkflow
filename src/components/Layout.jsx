@@ -17,9 +17,9 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0f0520 0%, #1a0533 30%, #0d1b4b 70%, #0a1628 100%)' }}>
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #050d1a 0%, #0a1628 40%, #0d1f38 70%, #081420 100%)' }}>
       {/* Top nav */}
-      <nav className="border-b border-white/10 sticky top-0 z-50" style={{ background: 'rgba(15,5,32,0.85)', backdropFilter: 'blur(20px)' }}>
+      <nav className="border-b border-white/10 sticky top-0 z-50"         style={{ background: 'rgba(5,13,26,0.85)', backdropFilter: 'blur(20px)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c3aed, #06b6d4)' }}>
