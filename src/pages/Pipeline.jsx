@@ -7,7 +7,7 @@ import NewIdeaModal from '@/components/NewIdeaModal';
 
 const STAGES = [
   { id: 'Spark', label: 'Spark', emoji: '✨', gradient: 'linear-gradient(135deg, #f59e0b, #fbbf24)', count_color: 'rgba(245,158,11,0.3)' },
-  { id: 'Refining', label: 'Refining', emoji: '🔬', gradient: 'linear-gradient(135deg, #7c3aed, #a78bfa)', count_color: 'rgba(124,58,237,0.3)' },
+  { id: 'Refining', label: 'Refining', emoji: '🔬', gradient: 'linear-gradient(135deg, #3b82f6, #6366f1)', count_color: 'rgba(99,102,241,0.3)' },
   { id: 'Proposed', label: 'Proposed', emoji: '📋', gradient: 'linear-gradient(135deg, #06b6d4, #22d3ee)', count_color: 'rgba(6,182,212,0.3)' },
   { id: 'In Progress', label: 'In Progress', emoji: '⚡', gradient: 'linear-gradient(135deg, #10b981, #34d399)', count_color: 'rgba(16,185,129,0.3)' },
   { id: 'Shipped', label: 'Shipped', emoji: '🚀', gradient: 'linear-gradient(135deg, #ec4899, #f472b6)', count_color: 'rgba(236,72,153,0.3)' },
@@ -87,7 +87,7 @@ export default function Pipeline() {
         <button
           onClick={() => setShowNewModal(true)}
           className="flex items-center gap-2 px-5 py-3 rounded-xl text-white font-bold text-sm transition-all hover:scale-105 hover:shadow-lg"
-          style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)', boxShadow: '0 4px 20px rgba(124,58,237,0.3)' }}
+          style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)', boxShadow: '0 4px 20px rgba(99,102,241,0.3)' }}
         >
           <Plus className="w-4 h-4" />
           New Idea
@@ -96,9 +96,9 @@ export default function Pipeline() {
 
       {/* Kanban Board */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4 overflow-x-auto pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pb-4">
           {STAGES.map(stage => (
-            <div key={stage.id} className="flex-shrink-0 w-64">
+            <div key={stage.id} className="min-w-0">
               {/* Column header */}
               <div className="flex items-center gap-2 mb-3 px-1">
                 <span
@@ -123,8 +123,8 @@ export default function Pipeline() {
                     {...provided.droppableProps}
                     className="min-h-40 rounded-2xl p-2 transition-all duration-200 space-y-2"
                     style={{
-                      background: snapshot.isDraggingOver ? 'rgba(124,58,237,0.1)' : 'rgba(255,255,255,0.02)',
-                      border: snapshot.isDraggingOver ? '1px dashed rgba(124,58,237,0.4)' : '1px dashed rgba(255,255,255,0.05)',
+                      background: snapshot.isDraggingOver ? 'rgba(99,102,241,0.1)' : 'rgba(255,255,255,0.02)',
+                      border: snapshot.isDraggingOver ? '1px dashed rgba(99,102,241,0.5)' : '1px dashed rgba(255,255,255,0.05)',
                     }}
                   >
                     {ideasByStage[stage.id].map((idea, index) => (

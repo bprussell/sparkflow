@@ -34,19 +34,16 @@ export default function IdeaCard({ idea, commentCount = 0, provided, snapshot })
       ref={provided?.innerRef}
       {...(provided?.draggableProps || {})}
       {...(provided?.dragHandleProps || {})}
-      className={`rounded-xl p-4 cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-2xl ${
-        snapshot?.isDragging ? 'rotate-2 shadow-2xl' : ''
-      }`}
+      className="rounded-xl p-4 cursor-grab active:cursor-grabbing transition-opacity duration-150"
       style={{
-        background: snapshot?.isDragging
-          ? 'rgba(124,58,237,0.3)'
-          : 'rgba(255,255,255,0.06)',
+        background: snapshot?.isDragging ? 'rgba(99,102,241,0.25)' : 'rgba(255,255,255,0.06)',
         backdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        boxShadow: snapshot?.isDragging ? '0 20px 60px rgba(124,58,237,0.4)' : undefined,
+        border: snapshot?.isDragging ? '1px solid rgba(99,102,241,0.5)' : '1px solid rgba(255,255,255,0.1)',
+        boxShadow: snapshot?.isDragging ? '0 16px 40px rgba(0,0,0,0.5)' : undefined,
+        opacity: snapshot?.isDragging ? 0.95 : 1,
       }}
     >
-      <Link to={`/idea/${idea.id}`} className="block">
+      <Link to={`/idea/${idea.id}`} className="block select-none">
         {/* Stage badge */}
         <div className="flex items-center justify-between mb-3">
           <span
