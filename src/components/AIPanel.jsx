@@ -23,13 +23,13 @@ function SpecSection({ label, value, fieldKey, onEdit, onSave, editingKey }) {
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: '#a78bfa' }}>{label}</span>
+        <span className="text-xs font-bold uppercase tracking-widest" style={{         color: '#818cf8' }}>{label}</span>
         {!isEditing ? (
           <button onClick={() => onEdit(fieldKey, value)} className="text-white/30 hover:text-white/60 text-xs transition-colors">Edit</button>
         ) : (
           <div className="flex gap-2">
             <button onClick={() => onEdit(null)} className="text-white/30 hover:text-white/60 text-xs transition-colors">Cancel</button>
-            <button onClick={() => onSave(fieldKey, draft)} className="text-xs font-semibold transition-colors" style={{ color: '#a78bfa' }}>Save</button>
+            <button onClick={() => onSave(fieldKey, draft)} className="text-xs font-semibold transition-colors" style={{         color: '#818cf8' }}>Save</button>
           </div>
         )}
       </div>
@@ -39,7 +39,7 @@ function SpecSection({ label, value, fieldKey, onEdit, onSave, editingKey }) {
           onChange={e => setDraft(e.target.value)}
           rows={4}
           className="w-full px-3 py-2 rounded-lg text-white text-sm outline-none resize-none leading-relaxed"
-          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(124,58,237,0.4)' }}
+          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(99,102,241,0.4)' }}
           autoFocus
         />
       ) : (
@@ -161,8 +161,8 @@ Respond with a JSON object with these exact keys:
       <div
         className="rounded-2xl overflow-hidden"
         style={{
-          border: generatingSpec ? '1px solid rgba(124,58,237,0.6)' : '1px solid rgba(124,58,237,0.25)',
-          background: 'rgba(124,58,237,0.08)',
+          border: generatingSpec ? '1px solid rgba(99,102,241,0.6)' : '1px solid rgba(99,102,241,0.25)',
+          background: 'rgba(99,102,241,0.08)',
         }}
       >
         {generatingSpec && (
@@ -171,9 +171,9 @@ Respond with a JSON object with these exact keys:
         <div className="p-5">
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" style={{ color: '#a78bfa' }} />
+              <Sparkles className="w-4 h-4" style={{         color: '#818cf8' }} />
               <h3 className="font-heading font-700 text-white text-sm">Project Spec</h3>
-              {hasSpec && <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }} />}
+              {hasSpec && <span className="w-2 h-2 rounded-full" style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }} />}
             </div>
             <div className="flex items-center gap-2">
               {hasSpec && (
@@ -185,7 +185,7 @@ Respond with a JSON object with these exact keys:
                 onClick={generateSpec}
                 disabled={generatingSpec}
                 className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-white text-xs font-bold transition-all disabled:opacity-50 hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }}
+                style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }}
               >
                 {generatingSpec ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                 {generatingSpec ? 'Generating...' : hasSpec ? 'Regenerate' : 'Generate Spec'}
@@ -208,8 +208,8 @@ Respond with a JSON object with these exact keys:
               ))}
               {idea.spec_effort_estimate && (
                 <div className="flex items-center gap-3 mt-2">
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: '#a78bfa' }}>Effort Estimate</span>
-                  <span className="px-3 py-1 rounded-full text-white text-xs font-black" style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }}>
+                  <span className="text-xs font-bold uppercase tracking-widest" style={{         color: '#818cf8' }}>Effort Estimate</span>
+                  <span className="px-3 py-1 rounded-full text-white text-xs font-black" style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }}>
                     {idea.spec_effort_estimate}
                   </span>
                 </div>

@@ -13,7 +13,7 @@ function Comment({ comment, currentUser, onReact, onReply, depth = 0, allComment
       <div className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: 'linear-gradient(135deg, #7c3aed, #06b6d4)' }}>
+            <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"               style={{ background: 'linear-gradient(135deg, #3b82f6, #06b6d4)' }}>
               {(comment.author_name || comment.author_email || '?')[0].toUpperCase()}
             </div>
             <span className="text-white/60 text-xs font-medium">{comment.author_name || comment.author_email || 'Anonymous'}</span>
@@ -30,7 +30,7 @@ function Comment({ comment, currentUser, onReact, onReply, depth = 0, allComment
               <Smile className="w-3.5 h-3.5" />
             </button>
             {showReactions && (
-              <div className="absolute bottom-6 left-0 flex gap-1 p-2 rounded-xl z-10" style={{ background: 'rgba(26,5,51,0.95)', border: '1px solid rgba(255,255,255,0.15)' }}>
+              <div className="absolute bottom-6 left-0 flex gap-1 p-2 rounded-xl z-10"               style={{ background: 'rgba(10,22,40,0.97)', border: '1px solid rgba(255,255,255,0.15)' }}>
                 {REACTIONS.map(emoji => (
                   <button key={emoji} onClick={() => { onReact(comment.id, emoji); setShowReactions(false); }} className="hover:scale-125 transition-transform text-base">
                     {emoji}

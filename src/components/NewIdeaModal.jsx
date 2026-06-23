@@ -25,7 +25,7 @@ export default function NewIdeaModal({ onClose, onCreated }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-lg rounded-2xl p-6" style={{ background: 'rgba(26,5,51,0.95)', border: '1px solid rgba(124,58,237,0.3)', backdropFilter: 'blur(30px)' }}>
+      <div className="w-full max-w-lg rounded-2xl p-6" style={{ background: 'rgba(10,22,40,0.97)', border: '1px solid rgba(99,102,241,0.25)', backdropFilter: 'blur(30px)' }}>
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #f59e0b, #fbbf24)' }}>
@@ -80,7 +80,7 @@ export default function NewIdeaModal({ onClose, onCreated }) {
               type="submit"
               disabled={!title.trim() || loading}
               className="flex-1 py-3 rounded-xl text-white text-sm font-bold transition-all disabled:opacity-40"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #a78bfa)' }}
+              style={{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }}
             >
               {loading ? 'Saving...' : 'Capture Spark ✦'}
             </button>
