@@ -1,0 +1,103 @@
+{
+  "name": "Idea",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "raw_description": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "Spark",
+        "Refining",
+        "Proposed",
+        "In Progress",
+        "Shipped"
+      ],
+      "default": "Spark"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "default": "Medium"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "spec_problem_statement": {
+      "type": "string"
+    },
+    "spec_goals": {
+      "type": "string"
+    },
+    "spec_target_users": {
+      "type": "string"
+    },
+    "spec_key_features": {
+      "type": "string"
+    },
+    "spec_tech_stack": {
+      "type": "string"
+    },
+    "spec_effort_estimate": {
+      "type": "string",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    "spec_potential_risks": {
+      "type": "string"
+    },
+    "critique_blind_spots": {
+      "type": "string"
+    },
+    "critique_similar_solutions": {
+      "type": "string"
+    },
+    "critique_questions": {
+      "type": "string"
+    },
+    "retrospective_note": {
+      "type": "string"
+    },
+    "ai_interactions_count": {
+      "type": "number",
+      "default": 0
+    },
+    "spec_generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "critique_generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "stage_changed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "collaborator_emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
