@@ -111,6 +111,7 @@ Respond ONLY with a valid JSON object with these exact keys:
       spec_generated_at: new Date().toISOString(),
       ai_interactions_count: (idea.ai_interactions_count || 0) + 1,
       stage: idea.stage === 'Spark' ? 'Refining' : idea.stage,
+      ...(!idea.raw_description && result.problem_statement ? { raw_description: result.problem_statement } : {}),
     });
     onIdeaUpdate(updated);
     setGeneratingSpec(false);
